@@ -5,6 +5,19 @@
     <title>Riddles</title>
 </head>
 <body>
-    
+    <script>
+        var quantityRightAnswer = 0;
+        var userAnswer = prompt('Quess the word: ');
+        if (userAnswer == 'one') {
+            alert('Right!');
+            quantityRightAnswer += 1;
+        }
+        var userAnswer = prompt('Quess the word: ');
+        if (userAnswer == 'big') {
+            alert('Right!');
+            quantityRightAnswer += 1;
+        }
+        alert('You make ' + quantityRightAnswer + ' right answer(s)!');
+    </script>
 </body>
 </html>
