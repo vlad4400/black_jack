@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Russian roulette</title>
+</head>
+<body>
+    <script>
+        var quantGames = 0;
+        do {
+            quantGames++;
+            if ((Math.random() * 6) < 1) {
+                alert("Ops. You have a bad day today - you settled ;(");
+                break;
+            }
+        } while (prompt("You are lucky, go play again?! (1 - tak, something else - no):") == 1);
+        alert("You played " + quantGames + " times. Come again, if alive ;)");
+    </script>
+</body>
+</html>
