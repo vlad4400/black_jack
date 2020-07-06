@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Roulette</title>
+</head>
+<body>
+    <script>
+        var arr = [];
+        var rounds = 1000000;
+        var quantRed = 0;
+        var maxQuantRed = 0;
+        for (var i = 0; i < rounds; i++) {
+            n = Math.round(Math.random() * 36);
+            if (n != 0) {
+                n = (n % 2) * 2 - 1;
+            }
+            arr.push(n);
+        }
+        alert(arr);
+        
+        for (var i = 0; i < arr.length; i++) {
+            if (arr[i] == 1) {
+                quantRed++;
+            } else {
+                if (quantRed > maxQuantRed) {
+                    maxQuantRed = quantRed;
+                }
+                quantRed = 0;
+            }
+            
+        }
+        alert('The maximum number of repetitions of the occurrence of red color (1): ' + maxQuantRed);
+    </script>
+</body>
+</html>
