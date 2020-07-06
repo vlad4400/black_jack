@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Calculation of interest on deposit</title>
+</head>
+
+<body>
+    <script>
+        var initSum = parseInt(prompt("Enter initial deposit amount, $: "));
+        var interestRate = parseInt(prompt("Interest rage, %: "));
+        var quantYears = parseInt(prompt("Quantity of years: "));
+        var sum = initSum;
+        for (var i = 1; i <= quantYears; i++) {
+            sum = sum + (sum * interestRate / 100);
+            alert ('Years passed: ' + i + '. Account amount: ' + sum);
+        }
+    </script>
+</body>
+
+</html>
