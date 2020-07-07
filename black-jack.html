@@ -1,23 +1,51 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <title>Black Jack</title>
 </head>
+
 <body>
     <script>
         function getRandomInt(min, max) {
             return Math.floor(Math.random() * (max - min + 1)) + min;
-        }           
-        
+        }
+
         function getCard() {
             var cards = ['6', '7', '8', '9', '10', 'J', 'Q', 'K', 'A'];
             return cards[getRandomInt(0, cards.length - 1)];
         }
-        
+
+        function getSum(arr) {
+            var sum = 0;
+            for (var i = 0; i < arr.length; i++) {
+                switch (arr[i]) {
+                case '6':
+                case '7':
+                case '8':
+                case '9':
+                case '10':
+                    sum += parseInt(arr[i]);
+                    break;
+                case 'J':
+                case 'Q':
+                case 'K':
+                    sum += 10;
+                    break;
+                }
+            }
+            for (var i = 0; i < arr.length; i++) {
+                if (arr[i] == 'A') {
+                    (sum > 10) ? ++sum : sum += 11;
+                }
+            }
+            return sum;
+        }
         var dealer = [getCard()];
-        var player = [getCard(), getCard()];
-        
+        var player = [getCard(), getCard(), getCard()];
         alert('Dealer: ' + dealer.join(', ') + '. Player: ' + player.join(', ') + '.');
+        alert('Player\'s current card amount: ' + getSum(player));
     </script>
 </body>
+
 </html>
