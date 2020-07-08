@@ -36,15 +36,51 @@
             }
             for (var i = 0; i < arr.length; i++) {
                 if (arr[i] == 'A') {
-                    (sum > 10) ? ++sum : sum += 11;
+                    (sum > 10) ? ++sum: sum += 11;
                 }
             }
             return sum;
         }
+        //alert('Player\'s current card amount: ' + getSum(player));
+        function getStatus() {
+            return 'Dealer: ' + dealer.join(', ') + '. Player: ' + player.join(', ') + '.';
+        }
+
+        function doWinner(mess = '') {
+            alert('You winner. ' + mess + ((mess=='')?'':'! ') + getStatus());
+            return true;
+        }
+
+        function doLost(mess = '') {
+            alert('You lost the game. ' + mess + ((mess=='')?'':'. ') + getStatus());
+            return true;
+        }
         var dealer = [getCard()];
-        var player = [getCard(), getCard(), getCard()];
-        alert('Dealer: ' + dealer.join(', ') + '. Player: ' + player.join(', ') + '.');
-        alert('Player\'s current card amount: ' + getSum(player));
+        var player = [getCard(), getCard()];
+        //var player = ['A', 'K'];
+        if (getSum(player) == 21) {
+            doWinner('Black Jack');
+        }
+        else {
+            var answer = '';
+            var die = false;
+            do {
+                answer = prompt(getStatus() + ' Want another card? (1 - yes, otherwise no)');
+                if (answer == '1') {
+                    player.push(getCard());
+                    sum = getSum(player);
+                    if (sum == 21) {
+                        doWinner('Black Jack');
+                        break;
+                    }
+                    if (sum > 21) {
+                        doLost('You have more than 21 points');
+                        break;
+                    }
+                }
+            }
+            while (answer == '1');
+        }
     </script>
 </body>
 
