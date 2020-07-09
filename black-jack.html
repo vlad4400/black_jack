@@ -41,23 +41,25 @@
             }
             return sum;
         }
-        //alert('Player\'s current card amount: ' + getSum(player));
+        //to check: alert('Player\'s current card amount: ' + getSum(player));
         function getStatus() {
             return 'Dealer: ' + dealer.join(', ') + '. Player: ' + player.join(', ') + '.';
         }
 
         function doWinner(mess = '') {
-            alert('You winner. ' + mess + ((mess=='')?'':'! ') + getStatus());
-            return true;
+            alert('You winner. ' + mess + ((mess == '') ? '' : '! ') + getStatus());
         }
 
         function doLost(mess = '') {
-            alert('You lost the game. ' + mess + ((mess=='')?'':'. ') + getStatus());
-            return true;
+            alert('You lost the game. ' + mess + ((mess == '') ? '' : '. ') + getStatus());
+        }
+
+        function doStandoff() {
+            alert('The result of the game is a draw. ' + getStatus());
         }
         var dealer = [getCard()];
         var player = [getCard(), getCard()];
-        //var player = ['A', 'K'];
+        
         if (getSum(player) == 21) {
             doWinner('Black Jack');
         }
@@ -76,6 +78,28 @@
                     if (sum > 21) {
                         doLost('You have more than 21 points');
                         break;
+                    }
+                }
+                else {
+                    while (getSum(dealer) < 17) {
+                        dealer.push(getCard());
+                    }
+                    var sumDealer = getSum(dealer);
+                    var sumPlayer = getSum(player);
+                    if (sumDealer == 21) {
+                        doLost('Dealer has Black Jack');
+                    }
+                    else if (sumDealer > 21) {
+                        doWinner('Dealer has more than 21 points');
+                    }
+                    else if (sumDealer == sumPlayer) {
+                        doStandoff();
+                    }
+                    else if (sumPlayer > sumDealer) {
+                        doWinner('You have more points than dealer')
+                    }
+                    else {
+                        doLost('Dealer has more points then you')
                     }
                 }
             }
